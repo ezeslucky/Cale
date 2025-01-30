@@ -20,8 +20,8 @@ export function AuthModel (){
 </DialogHeader>
 
 <div className=" flex flex-col mt-5  gap-3">
-    <Button className=" gap-8">  <Image src={Google} alt="Google" className=" size-8" /> Sign In With Google</Button>
-    <Button className=" gap-8"> <Image src={Github} alt="Github" className=" size-8" />Sign In With Github</Button>
+    <Button className=" gap-8 font-semibold">  <Image src={Google} alt="Google" className=" size-8 " /> Sign In With Google</Button>
+    <Button className=" gap-8 font-semibold"> <Image src={Github} alt="Github" className=" size-8" />Sign In With Github</Button>
 </div>
             </DialogContent>
         </Dialog>
