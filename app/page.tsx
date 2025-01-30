@@ -1,7 +1,10 @@
+import { Navbar } from "./components/Navbar";
 
 
 export default function Home() {
   return (
-   <div>Hii </div>
+   <div className=" max-w-7xl">
+    <Navbar/>
+   </div>
   );
 }

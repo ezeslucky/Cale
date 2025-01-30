@@ -1,14 +1,9 @@
 import React from 'react'
-import { auth } from '../lib/auth'
-
-import { redirect } from 'next/navigation'
+import { requireUser } from '../lib/hoosk'
 
 export default async function DashboardPage() {
-  const session = await auth()
-
-  if(!session){
-    return redirect("/")
-  }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const session = await requireUser()
   return (
     <div>
       dashboard
