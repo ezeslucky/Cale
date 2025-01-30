@@ -2,8 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import Image from "next/image";
 import Logo from "@/public/logo.svg"
-import Github from '@/public/github.svg'
-import Google from "@/public/google.svg"
+
+
+import { signIn } from "../lib/auth";
+import { GithubAuthButton, GoogleAuthButton } from "./SubmitButton";
 export function AuthModel (){
     return(
         <Dialog>
@@ -20,8 +22,20 @@ export function AuthModel (){
 </DialogHeader>
 
 <div className=" flex flex-col mt-5  gap-3">
-    <Button className=" gap-8 font-semibold">  <Image src={Google} alt="Google" className=" size-8 " /> Sign In With Google</Button>
-    <Button className=" gap-8 font-semibold"> <Image src={Github} alt="Github" className=" size-8" />Sign In With Github</Button>
+    <form action={ async ()=>{
+"use server"
+
+await signIn("google")
+    }} className=" w-full"> 
+    <GoogleAuthButton/>
+    </form>
+    
+   <form action={async () =>{
+    "use server"
+    await signIn("github")
+   }}>
+    <GithubAuthButton/>
+   </form>
 </div>
             </DialogContent>
         </Dialog>
