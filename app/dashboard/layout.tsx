@@ -7,13 +7,14 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { ThemeToggle } from "../components/ThemeToggle";
-import { DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { auth } from "../lib/auth";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { signOut } from "../lib/auth";
+import { requireUser } from "../lib/hoosk";
 
 export default async function DashboardLayout (
     {children} : {children:ReactNode}
 ){
-    const session = await auth()
+    const session = await requireUser()
     return(
         <>
             <div className=" min-h-screen w-full grid md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
@@ -69,12 +70,31 @@ Ca<span className="text-primary">Le</span>
   />
 </Button>
     </DropdownMenuTrigger>
+    <DropdownMenuContent align="end">
+        <DropdownMenuLabel>
+            My Account
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator/>
+        <DropdownMenuItem asChild>
+            <Link href='/dashboard/settings'>Settings</Link>
+            
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+            
+        <form action={ async ()=>{
+            "use server"
+            await signOut()
+        }}>
+<button className="  w-full">LogOut</button>
+        </form>
+        </DropdownMenuItem>
+    </DropdownMenuContent>
 </DropdownMenu>
 </div>
 </header>
 </div>
             </div>
         </>
-
+ 
     )
 }
