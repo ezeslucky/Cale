@@ -3,10 +3,17 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import Logo from "@/public/logo.svg"
 import { DashboardLinks } from "../components/DashboardLink";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
+import { ThemeToggle } from "../components/ThemeToggle";
+import { DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { auth } from "../lib/auth";
 
-export default function DashboardLayout (
+export default async function DashboardLayout (
     {children} : {children:ReactNode}
 ){
+    const session = await auth()
     return(
         <>
             <div className=" min-h-screen w-full grid md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
@@ -29,6 +36,42 @@ Ca<span className="text-primary">Le</span>
 </div>
 </div>
 
+</div>
+
+<div className=" flex flex-col ">
+<header  className=" flex h-14 items-center gap-4 border-b bg-muted/40 lg:h-[60px] lg:px-6">
+<Sheet>
+    <SheetTrigger asChild>
+        <Button className=" md:hidden shrink-0" size="icon" variant="outline">
+            <Menu className=" size-5"/>
+        </Button>
+    </SheetTrigger>
+    <SheetContent side='left' className=" flex flex-col ">
+    {/* <SheetTitle className="sr-only">Navigation Menu</SheetTitle>  */}
+<nav className=" grid gap-2 mt-10">
+<DashboardLinks/>
+</nav>
+    </SheetContent>
+</Sheet>
+
+<div className=" ml-auto flex items-center gap-x-4">
+<ThemeToggle/>
+
+<DropdownMenu>
+    <DropdownMenuTrigger asChild>
+<Button variant="secondary" size="icon" className=" rounded-full">
+<img
+ src={session?.user?.image as string}
+  alt=" Profile Image" 
+  width={20} 
+  height={20}
+  className=" w-full h-full rounded-full"
+  />
+</Button>
+    </DropdownMenuTrigger>
+</DropdownMenu>
+</div>
+</header>
 </div>
             </div>
         </>
