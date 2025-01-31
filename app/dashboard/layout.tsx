@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 import Logo from "@/public/logo.svg"
+import { DashboardLinks } from "../components/DashboardLink";
 
 export default function DashboardLayout (
     {children} : {children:ReactNode}
@@ -18,6 +19,13 @@ export default function DashboardLayout (
 Ca<span className="text-primary">Le</span>
 </p>
 </Link>
+</div>
+
+<div className="flex-1">
+    <nav className=" grid items-center px-2  lg:px-4">
+<DashboardLinks/>
+    </nav>
+
 </div>
 </div>
 
