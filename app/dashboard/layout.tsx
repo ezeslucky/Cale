@@ -9,7 +9,7 @@ import { Menu } from "lucide-react";
 import { ThemeToggle } from "../components/ThemeToggle";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { signOut } from "../lib/auth";
-import { requireUser } from "../lib/hoosk";
+import { requireUser } from "../lib/hooks";
 
 export default async function DashboardLayout (
     {children} : {children:ReactNode}
@@ -48,7 +48,7 @@ Ca<span className="text-primary">Le</span>
         </Button>
     </SheetTrigger>
     <SheetContent side='left' className=" flex flex-col ">
-    {/* <SheetTitle className="sr-only">Navigation Menu</SheetTitle>  */}
+   
 <nav className=" grid gap-2 mt-10">
 <DashboardLinks/>
 </nav>
@@ -61,6 +61,7 @@ Ca<span className="text-primary">Le</span>
 <DropdownMenu>
     <DropdownMenuTrigger asChild>
 <Button variant="secondary" size="icon" className=" rounded-full">
+
 <img
  src={session?.user?.image as string}
   alt=" Profile Image" 
