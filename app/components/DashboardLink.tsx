@@ -9,7 +9,7 @@ interface iAppProps{
     id:number;
     name:string;
     href: string;
-    icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGAElement>>;
+    icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
 
 }
 
