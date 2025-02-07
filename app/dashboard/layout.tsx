@@ -1,4 +1,5 @@
-import Image from "next/image";
+
+ import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 import Logo from "@/public/logo.svg"
@@ -8,13 +9,17 @@ import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { ThemeToggle } from "../components/ThemeToggle";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { auth, signOut } from "../lib/auth";
+import {  auth, signOut } from "../lib/auth";
 import { requireUser } from "../lib/hooks";
 
-export default async function DashboardLayout(
-  { children }: { children: ReactNode }
-) {
-  const session = auth();
+
+export default async function DashboardLayout({ 
+  children 
+}: {
+   children: ReactNode
+   }) {
+  const session = await requireUser()
+  
 
   
 
@@ -78,12 +83,12 @@ export default async function DashboardLayout(
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <form
+                    className=" w-full"
                       action={async () => {
                         "use server";
                         await signOut();
-                      }}
-                    >
-                      <button className="w-full">LogOut</button>
+                      }}>
+                      <button className="w-full text-left">LogOut</button>
                     </form>
                   </DropdownMenuItem>
                 </DropdownMenuContent>

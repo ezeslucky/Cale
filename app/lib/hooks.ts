@@ -1,3 +1,5 @@
+
+
 import { redirect } from "next/navigation";
 import { auth } from "./auth";
 
@@ -10,3 +12,5 @@ return redirect("/")
     return session
     
 }
+
+
